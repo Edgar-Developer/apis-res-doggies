@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+   <link rel="icon" href="./favicon.ico" type="image/png"><!-- agrega un icon a al browser -->
+  <title>Doggies Random</title>
+</head>
+<body>
+
+  <section id = 'header'>
+    <span id="error"></span>
+    <h1>Doggies Firulais 🐶</h1>
+    <h4>🐕 New API Key for the Dog API</h4>    
+  </section>
+  
+  
+  <section id="content">
+    <h2>Doggies Random</h2>
+    
+    <button onclick= "loadRandomDoggies()">New Doggies</button>
+
+    <section id="doggiesRandom">
+
+      <article class="contenedorfavorite">
+      <img class="imageFavorite" id="img1"  alt="Doggies Random">
+        <button id="saveFavorites1" class="favoritePosition">⭐</button>
+      </article>
+      
+      <article class="contenedorfavorite">
+      <img class="imageFavorite" id="img2" alt="Doggies Random">
+        <button id="saveFavorites2" class="favoritePosition">⭐</button>
+      </article>
+  
+      <article class="contenedorfavorite">
+      <img class="imageFavorite" id="img3" alt="Doggies Random">
+        <button id="saveFavorites3" class="favoritePosition">⭐</button>
+      </article>
+  
+      <article class="contenedorfavorite">
+      <img class="imageFavorite" id="img4" alt="Doggies Random">
+        <button id="saveFavorites4" class="favoritePosition">⭐</button>
+      </article>
+  
+      <article class="contenedorfavorite">      
+      <img class="imageFavorite" id="img5" alt="Doggies Random">
+        <button id="saveFavorites5" class="favoritePosition">⭐</button>
+      </article>    
+    </section>
+  </section>
+  
+  <section id="fooder">
+    <h2>Doggies Favorites</h2>
+    <section id="doggiesFavorites">  
+    </section>
+  </section>
+
+  <script src="./api-dog.js"></script>
+</body>
+</html>
