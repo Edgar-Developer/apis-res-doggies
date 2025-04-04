@@ -1,6 +1,8 @@
-const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=5&api_key=live_gr2UQc1F3w5q6g7iWG5Pomub6XTz4iio4fxuoAaQypMqZrSewUyMadlYso7mkZZB' // al concatenar la api key ya la pagina nos empieza a contar las solicitudes q hagamos
-const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?api_key=live_gr2UQc1F3w5q6g7iWG5Pomub6XTz4iio4fxuoAaQypMqZrSewUyMadlYso7mkZZB' // al concatenar la api key ya la pagina nos empieza a contar las solicitudes q hagamos
-const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_gr2UQc1F3w5q6g7iWG5Pomub6XTz4iio4fxuoAaQypMqZrSewUyMadlYso7mkZZB` // se utiliza una arrow function para pasarle al endpoint el id usanado templey literal 
+const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=5' // al concatenar la api key ya la pagina nos empieza a contar las solicitudes q hagamos
+const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites' // al concatenar la api key ya la pagina nos empieza a contar las solicitudes q hagamos
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}` // se utiliza una arrow function para pasarle al endpoint el id usanado templey literal 
+const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload'
+const API_KEY = 'live_gr2UQc1F3w5q6g7iWG5Pomub6XTz4iio4fxuoAaQypMqZrSewUyMadlYso7mkZZB'
 
 
 const spanError = document.getElementById('error');
@@ -48,7 +50,12 @@ async function loadRandomDoggies() {
 
 async function loadfavoritesDoggies() {
   try {
-  const res = await fetch(API_URL_FAVORITES);
+  const res = await fetch(API_URL_FAVORITES, {
+    method: 'GET',
+    headers: {
+      'x-api-key': API_KEY
+    }
+  });
   if (res.status !== 200) {
     throw new Error(`Hubo un error: ${res.status}`); 
   }  
@@ -84,7 +91,8 @@ async function saveFavoritesDoggies(id) {
   const respuesta = await fetch(API_URL_FAVORITES, {
     method: 'POST',
     headers: {
-      'content-type': 'application/json'
+      'content-type': 'application/json',
+      'x-api-key': API_KEY
     },
     body: JSON.stringify({
       image_id: id
@@ -106,6 +114,9 @@ async function saveFavoritesDoggies(id) {
 async function deleteFavoritesDoggies(id) {
   const respuesta = await fetch(API_URL_FAVORITES_DELETE(id), {
     method: 'DELETE',
+    headers: {
+      'x-api-key': API_KEY
+    }
   });
 
   const data = await respuesta.json();
@@ -120,5 +131,33 @@ async function deleteFavoritesDoggies(id) {
   }  
 }
 
+async function upLoadDogPhoto() {
+  const form = document.getElementById('udLoadForm');
+  const formD = new FormData(form);
+
+  console.log(formD.get('file'));  
+
+  const res = await fetch(API_URL_UPLOAD, {
+    method: 'POST',
+    headers: {
+      // No debes incluir el encabezado Content-Type cuando usas FormData, ya que fetch lo establece automáticamente.
+      'x-api-key': API_KEY,
+    },
+    body: formD
+  })
+
+  const data = await res.json();
+
+  if (res.status !== 201) {
+    throw new Error(`Hubo un error: ${res.status} - ${data.message}`); 
+    } else {
+      console.log('UpLoad Exitosamente'); 
+      console.log({data}); 
+      console.log(data.url); 
+      saveFavoritesDoggies(data.id)   
+    } 
+}
+
 loadRandomDoggies();
 loadfavoritesDoggies();
+
