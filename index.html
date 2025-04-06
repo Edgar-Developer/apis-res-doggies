@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./index.css">
-   <link rel="icon" href="./favicon.ico" type="image/png"><!-- agrega un icon a al browser -->
+  <link rel="stylesheet" href="./width-540px.css" media="screen and (max-width: 540px)">
+  <link rel="icon" href="./favicon.ico" type="image/png"><!-- agrega un icon a al browser -->
   <title>Doggies Random</title>
 </head>
 <body>
@@ -17,9 +18,12 @@
   
   
   <section id="content">
-    <h2>Doggies Random</h2>
-    
-    <button onclick= "loadRandomDoggies()">New Doggies</button>
+
+    <div id="reload" >
+      <h2>Doggies Random</h2>
+      
+      <button onclick= "loadRandomDoggies()">New Doggies</button>
+    </div>
 
     <section id="doggiesRandom">
 
@@ -56,7 +60,7 @@
       
       <form id="udLoadForm">
         <input id="file" type="file" name="file">
-        <button type="button" onclick="upLoadDogPhoto()">Up Photo</button>
+        <button id="up-load" type="button" onclick="upLoadDogPhoto()">Up Photo</button>
       </form>
     </div>
   </section>

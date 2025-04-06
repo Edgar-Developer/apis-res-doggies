@@ -1,0 +1,23 @@
+@media (max-width: 540px) {
+  h1 {
+    text-align-last: center;
+  }
+
+  #up-load {
+    margin-top: 10px;
+  }
+
+  #udLoadForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #reload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
