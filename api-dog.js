@@ -4,7 +4,6 @@ const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourite
 const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload'
 const API_KEY = 'live_gr2UQc1F3w5q6g7iWG5Pomub6XTz4iio4fxuoAaQypMqZrSewUyMadlYso7mkZZB'
 
-
 const spanError = document.getElementById('error');
 
 async function loadRandomDoggies() {
